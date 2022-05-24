@@ -1,0 +1,63 @@
+.form-control{
+    padding: 10px 15px;
+
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form{
+    width: 600px;
+    height: 600px;
+    margin: 50px;
+}
+
+.btn{
+    margin-top: 10px;
+}
+
+.btn1{
+    margin: 10px 15px;
+    border-style: none;
+    padding: 5px 10px;
+    width: 30%;
+    background-color: coral;
+    color: white;
+}
+
+input.ng-invalid.ng-touched{
+    border: 2px solid red;
+}
+select.ng-invalid.ng-touched{
+    border: 2px solid red;
+}
+
+textarea.ng-invalid.ng-touched{
+    border: 2px solid red;
+}
+
+
+input.ng-valid.ng-touched{
+    border: 2px solid green;
+}
+select.ng-valid.ng-touched{
+    border: 2px solid green;
+}
+
+textarea.ng-valid.ng-touched{
+    border: 2px solid green;
+}
+
+
+
+
+textarea{
+    margin-top: 20px;
+}
+
+.error{
+    color: red;
+}

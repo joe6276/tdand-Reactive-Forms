@@ -1,0 +1,76 @@
+<form  (ngSubmit)="onSubmit()" [formGroup]="profile" >  
+    <div class="form-group" >
+  
+      <label> Name</label>
+      <input type="text" class="form-control" formControlName="name">
+      <div class="error" *ngIf="!profile.get('name')!.valid  &&
+         profile.get('name')!.touched">
+            <span  class='errors' *ngIf="profile.get('name')!.errors!['unallowed']">
+                * username rejected
+            </span>
+            <span  class='errors' *ngIf="profile.get('name')!.errors!['required']">
+                * username Required
+            </span>
+        </div>
+    </div>
+  
+  
+     
+  
+ <div formGroupName="contactInfo">
+    <div class="form-group">
+        <label> Email Address</label>
+        <input type="text"   class="form-control" formControlName="email">
+        <span class="error" *ngIf="!profile.get('contactInfo.email')!.valid  &&
+         profile.get('contactInfo.email')!.touched">* Please enter an email</span>
+   </div>
+    
+      <div class="form-group">
+        <label> Phone Number</label>
+        <input type="text"   class="form-control" formControlName="phone" >
+      </div>
+  
+ </div>
+  
+  
+  
+    <div class="form-group">
+      <label> Select Course</label>
+      <select class="form-control" formControlName="course">
+        <option value="js">Javascript</option>
+        <option value="java">Java</option>
+        <option value="c+">C++</option>
+        <option value="c#">C#</option>
+      </select>
+    </div>
+  <label for="">Bio</label>
+    <div class="form-group">
+      <textarea  class="form-control" formControlName="bio" >
+  
+      </textarea>
+      
+    </div>
+    <label for="">Gender</label>
+    <div class="form-group" *ngFor="let gender of genders">
+      <label><input type="radio"  value={{gender}} formControlName="gender" > {{gender}}</label>
+    </div>
+        <div formArrayName="hobbies">
+            <p>Hobbies</p>
+            <button (click)="addHobby()" >Add Hobby</button>
+            <div class="form-group" *ngFor="let control of getControls();  let i = index">
+                <input class="form-control" [formControlName]="i" >
+                <button (click)="remove(i)">X</button>
+        </div>
+        </div>
+
+        
+
+            
+     
+
+
+    <div class="btn">
+      <button  type="submit">Submit</button>
+     
+    </div>
+  </form>
