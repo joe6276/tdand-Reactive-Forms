@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FsComponent } from './fs/fs.component';
 import { RformComponent } from './rform/rform.component';
+import { BuilderComponent } from './builder/builder.component';
+import { FormBuilderComponent } from './form-builder/form-builder.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FsComponent,
-    RformComponent
+    RformComponent,
+    BuilderComponent,
+    FormBuilderComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class RformComponent implements OnInit {
   genders=['Male', 'Female', 'Other', 'Rather Not say']
   profile!:FormGroup
+  try=true
   unUsernames:string[]=['Benjamin', 'Dennis', 'Fredrick', 'Ashina', 'Edwin']
   constructor() { }
 
@@ -45,7 +46,9 @@ export class RformComponent implements OnInit {
     //   'name':"Jonathan",
     //   'course':'java'})
   }
-
+  close(){
+    this.try=false
+  }
   onSubmit(){
     console.log(this.profile)
 
@@ -58,6 +61,7 @@ export class RformComponent implements OnInit {
   addHobby(){
     const control= new FormControl(null, Validators.required);
     (this.profile.get('hobbies') as FormArray).push(control);
+    // this.try=false
   }
   getControls(){
     return (<FormArray>this.profile.get('hobbies')).controls

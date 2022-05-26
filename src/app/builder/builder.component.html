@@ -29,7 +29,7 @@
         *Email is Unallowed
         </span>
         
-       <span  class='error' *ngIf="profile.get('contactInfo.email')!.errors!['required']">
+       <span  class='error' *ngIf="profile.get(['contactInfo','email'])!.errors!['required']">
         
         *Please enter a valid email
         </span>
@@ -48,7 +48,8 @@
   
     <div class="form-group">
       <label> Select Course</label>
-      <select class="form-control"  formControlName="course" >
+      <select class="form-control" [ngModel]="'sl'"  formControlName="course" >
+        <option value="sl">Select A Course</option>
         <option value="js">Javascript</option>
         <option value="java">Java</option>
         <option value="c+">C++</option>
@@ -68,36 +69,21 @@
     </div>
     <p>Your Hobbies</p>
 <button type="button"  (click)="addHobby()">Add Hobby</button>
-    <div *ngIf="try" formArrayName="hobbies">
+    <div  formArrayName="hobbies">
         <div  *ngFor="let controls of getControls() ; let i=index">
           
           <div class="hob">
-            <label (click)="close()">X</label>
-          <div class="hobby">
-            <h1>Student Name</h1>
-          </div>
-          <div class="hobby">
+            
             <input type="text" [formControlName]="i">
+            <label (click)="remove(i)">X</label>
+
           </div>
-          <div class="hobby">
-            <h1>Student Email</h1>
-          </div>
-          <div class="hobby">
-            <input type="text" [formControlName]="i">
-          </div>
-          <div class="hobby">
-            <h1>Student Course</h1>
-          </div>
-          <div class="hobby">
-            <input type="text" [formControlName]="i">
-          </div>
-          <button class="bt">submit</button>
-        </div>
-        </div>
+        
 
     </div>
+    </div>
     <div class="btn">
-      <button [disabled]="!profile.valid" type="submit">Submit</button>
+      <button  type="submit">Submit</button>
      
     </div>
   </form>

@@ -6,7 +6,7 @@
       <div *ngIf="!profile.get('name')!.valid  && 
       profile.get('name')!.touched ">
 
-      <span  class='error' *ngIf="profile.get('name')!.errors!['DisallowedUsername']">
+      <span  class='error' *ngIf="profile.get('name')!.errors!['Disallowed']">
         Username is Not Alllowed
       </span>
       <span  class='error' *ngIf="profile.get('name')!.errors!['required']">
@@ -29,7 +29,7 @@
         *Email is Unallowed
         </span>
         
-       <span  class='error' *ngIf="profile.get('contactInfo.email')!.errors!['required']">
+       <span  class='error' *ngIf="profile.get(['contactInfo','email'])!.errors!['required']">
         
         *Please enter a valid email
         </span>
@@ -39,6 +39,21 @@
     <div class="form-group">
       <label> Phone Number</label>
       <input type="text"   formControlName="phone"  class="form-control">
+
+      <div class="error" *ngIf="!profile.get('contactInfo.phone')!.valid  && 
+       profile.get('contactInfo.phone')!.touched ">
+       <span  class='error' *ngIf="profile.get('contactInfo')!.get('phone')!.errors!['required']"> * Please enter Phone Number
+        </span>
+       <span  class='error' *ngIf="profile.get(['contactInfo', 'phone'])!.errors!['pattern']">
+        * Please Enter numbers Only
+        </span>
+        <span  class='error' *ngIf="profile.get('contactInfo.phone')!.errors!['maxlength']">
+         * Check the number
+          </span>
+          
+       
+</div>
+
     </div>
   </div>
   
@@ -48,12 +63,21 @@
   
     <div class="form-group">
       <label> Select Course</label>
-      <select class="form-control"  formControlName="course" >
-        <option value="js">Javascript</option>
-        <option value="java">Java</option>
-        <option value="c+">C++</option>
-        <option value="c#">C#</option>
+      <select class="form-control" [ngModel]="'sl'"  formControlName="course" >
+        <option value="sl">Select A Course</option>
+        <option value="Javascript">Javascript</option>
+        <option value="Java">Java</option>
+        <option value="C++">C++</option>
+        <option value="C#">C#</option>
       </select>
+
+      <div class="error" *ngIf="!profile.get('course')!.valid  && 
+      profile.get('course')!.touched">
+
+      <span  class='error' *ngIf="profile.get('course')!.errors!['noCourseSelected']">
+       * Please Select a Course
+       </span>
+       </div>
     </div>
   <label for="">Bio</label>
     <div class="form-group">
@@ -68,36 +92,23 @@
     </div>
     <p>Your Hobbies</p>
 <button type="button"  (click)="addHobby()">Add Hobby</button>
-    <div *ngIf="try" formArrayName="hobbies">
+    <div  formArrayName="hobbies">
         <div  *ngFor="let controls of getControls() ; let i=index">
           
-          <div class="hob">
-            <label (click)="close()">X</label>
-          <div class="hobby">
-            <h1>Student Name</h1>
-          </div>
-          <div class="hobby">
+          <div class="hobbby">
+            
             <input type="text" [formControlName]="i">
+            <label  (click)="remove(i)">X</label>
+
           </div>
-          <div class="hobby">
-            <h1>Student Email</h1>
-          </div>
-          <div class="hobby">
-            <input type="text" [formControlName]="i">
-          </div>
-          <div class="hobby">
-            <h1>Student Course</h1>
-          </div>
-          <div class="hobby">
-            <input type="text" [formControlName]="i">
-          </div>
-          <button class="bt">submit</button>
-        </div>
-        </div>
+        
 
     </div>
+    </div>
     <div class="btn">
-      <button [disabled]="!profile.valid" type="submit">Submit</button>
+      <button   type="submit">Submit</button>
      
     </div>
+
+    <button type="button" (click)="setValue()">Set</button>
   </form>
